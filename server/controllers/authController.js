@@ -3,8 +3,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-const generator = require("generate-password");
-const Mailer = require("../utils/mailer/Mailer");
 const salt = bcrypt.genSaltSync(10);
 
 const Login = async (req, res, next) => {
@@ -43,29 +41,21 @@ const Login = async (req, res, next) => {
   }
 };
 
-const add = async (req, res, next) => {
+const Register = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
-      const userExist = await User.aggregate([
-        { $match: { email: req.body.email } },
-      ]);
-      if (userExist.length > 0) throw new Error("This User Already Exist");
-      if (userExist.length <= 0) {
-        const password = generator.generate({
-          length: 12,
-          numbers: true,
-        });
-        console.log(password);
-        const hash_password = await bcrypt.hash(password, salt);
+      const userExist = await User.findOne({ email: req.body.email });
+      if (!userExist) throw new Error("This User Already Exist");
+      if (userExist) {
+        const hash_password = await bcrypt.hash(req.body.password, salt);
         if (hash_password) {
           const createUser = await User.create({
             name: req.body.name,
             email: req.body.email,
-            password: hash_password,
+            password: req.body.password,
           });
           if (createUser) {
-            Mailer(password, req.body.email);
             const userSaved = await createUser.save();
             if (userSaved) {
               res.send("User Created Success");
@@ -83,4 +73,4 @@ const add = async (req, res, next) => {
   }
 };
 
-module.exports = { Login, add };
+module.exports = { Login, Register };

@@ -6,7 +6,7 @@ const cors = require("cors");
 const authRouter = require("./routers/authRouter");
 // const organizmeRouter = require("./routers/organizmeRouter");
 // const formationRouter = require("./routers/formationRouter");
-// const ErrorHandler = require("./middlewares/errorHandling/errorHandling");
+const ErrorHandler = require("./midellewares/ErrorHandler/ErrorHandler");
 
 app.use(
   cors({

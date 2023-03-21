@@ -1,5 +1,5 @@
 const authRouter = require("express").Router();
-const {Login, add } = require("../controllers/authController");
+const {Login, Register } = require("../controllers/authController");
 const { check } = require("express-validator");
 
 authRouter.post(
@@ -20,7 +20,7 @@ authRouter.post(
     check("name", "Name is Requered").trim().notEmpty(),
     check("email", "Email is Requered").trim().notEmpty().isEmail(),
   ],
-  add
+  Register
 );
 
 module.exports = authRouter;
