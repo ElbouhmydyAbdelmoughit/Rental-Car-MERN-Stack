@@ -1,18 +1,21 @@
-const  mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const carSchema = mongoose.Schema({
-  name:{
-    type:String,
+  name: {
+    type: String,
   },
-  model:{
-    type:String,
+  model: {
+    type: String,
   },
-  description:{
-    type:String,
+  price: {
+    type: Number,
   },
-  image:{
-    type:String,
+  description: {
+    type: String,
   },
-})
+  image: {
+    type: String,
+  },
+});
 
-module.exports = mongoose.model('Car',carSchema)
+module.exports = mongoose.model("Car", carSchema);

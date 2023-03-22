@@ -4,8 +4,7 @@ require("dotenv").config();
 require("./config/dbConfig");
 const cors = require("cors");
 const authRouter = require("./routers/authRouter");
-// const organizmeRouter = require("./routers/organizmeRouter");
-// const formationRouter = require("./routers/formationRouter");
+const carRouter = require("./routers/carRouter");
 const ErrorHandler = require("./midellewares/ErrorHandler/ErrorHandler");
 
 app.use(
@@ -17,8 +16,7 @@ app.use(
 
 app.use(express.json());
 app.use("/", authRouter);
-// app.use("/organizme", organizmeRouter);
-// app.use("/formation", formationRouter);
+app.use("/car", carRouter);
 app.use(ErrorHandler);
 
 module.exports = app;
