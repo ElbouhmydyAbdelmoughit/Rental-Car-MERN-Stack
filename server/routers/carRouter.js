@@ -1,5 +1,6 @@
 const carRouter = require("express").Router();
 const { check } = require("express-validator");
+const upload = require("../midellewares/uploadImage/upload");
 const {
   add,
   getAll,
@@ -7,7 +8,6 @@ const {
   remove,
   update,
 } = require("../controllers/carController");
-const upload = require("../midellewares/uploadImage/upload");
 
 carRouter.post(
   "/add",

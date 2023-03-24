@@ -1,21 +1,24 @@
 const Car = require("../models/Car");
 const { validationResult } = require("express-validator");
+const carRouter = require("../routers/carRouter");
 
 const add = async (req, res, next) => {
   const errors = validationResult(req);
   try {
     if (errors.isEmpty()) {
       const CarExist = await Car.findOne({ name: req.body.name });
+
       if (!CarExist) {
-        const Car = await new Car({
+       
+        const car = await new Car({
           name: req.body.name,
           model: req.body.model,
           price: req.body.price,
           description: req.body.description,
           image: req.body.image,
         });
-        if (Car) {
-          await Car.save();
+        if (car) {
+          await car.save();
           res.send("Car Created Success");
         }
       } else {
@@ -28,8 +31,6 @@ const add = async (req, res, next) => {
     next(error);
   }
 };
-
-return
 
 const getAll = async (req, res, next) => {
   try {
@@ -74,11 +75,10 @@ const update = async (req, res, next) => {
         { _id: id },
         {
           name: req.body.name,
+          model: req.body.model,
+          price: req.body.price,
           description: req.body.description,
           image: req.body.image,
-          dubet_date: req.body.dubet_date,
-          final_date: req.body.final_date,
-          organizme: req.body.organizme,
         }
       );
       if (!updateCar) throw new Error("This Car Not Update");
