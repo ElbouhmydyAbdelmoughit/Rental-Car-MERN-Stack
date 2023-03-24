@@ -9,21 +9,19 @@ const Login = async (req, res, next) => {
   try {
     let errors = validationResult(req);
     if (errors.isEmpty()) {
-      const user = await User.aggregate([
-        { $match: { email: req.body.email } },
-      ]);
-      if (user.length <= 0) throw new Error("User Not Found");
-      if (user.length > 0) {
+      const user = await User.findOne({ email: req.body.email });
+      if (!user) throw new Error("User Not Found");
+      if (user) {
         const password_compare = await bcrypt.compare(
           req.body.password,
-          user[0].password
+          user.password
         );
         if (password_compare) {
           const token = await jwt.sign(
             {
-              name: user[0].name,
-              email: user[0].email,
-              role: user[0].role,
+              name: user.name,
+              email: user.email,
+              role: user.role,
             },
             process.env.TOKEN_SECRET,
             { expiresIn: "1800s" }
@@ -46,14 +44,14 @@ const Register = async (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
       const userExist = await User.findOne({ email: req.body.email });
-      if (!userExist) throw new Error("This User Already Exist");
-      if (userExist) {
+      if (userExist) throw new Error("This User Already Exist");
+      if (!userExist) {
         const hash_password = await bcrypt.hash(req.body.password, salt);
         if (hash_password) {
           const createUser = await User.create({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
+            password: hash_password,
           });
           if (createUser) {
             const userSaved = await createUser.save();

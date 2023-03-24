@@ -8,7 +8,6 @@ const userShema = mongoose.Schema({
     type: String,
     default: "client",
   },
-  organizme: String,
 });
 
 module.exports = mongoose.model("User", userShema);
