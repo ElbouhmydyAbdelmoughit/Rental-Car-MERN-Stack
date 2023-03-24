@@ -29,6 +29,8 @@ const add = async (req, res, next) => {
   }
 };
 
+return
+
 const getAll = async (req, res, next) => {
   try {
     const allCar = await Car.find();
