@@ -3,6 +3,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
+
 import Home from "./pages/Home";
 // import Login from "./components/Login/Login";
 // import Register from "./components/Register/Register";

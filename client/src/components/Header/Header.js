@@ -1,37 +1,53 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from "react";
+import { Link } from "react-scroll";
+import "./Header.css";
 
-function Header() {
+const Header = () => {
   return (
-    <Navbar bg="light" expand="lg" className='shadow'>
-      <Container fluid>
-        <Navbar.Brand href="" className='fw-bold'>CAR RENTAL</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
+    <header className="sticky-top d-flex justify-content-between bg-white shadow-lg p-2">
+      <nav className="container-fluid d-flex align-items-center justify-content-between">
+        <div>
+          <Link to="/clientpage">
+            <h1>YOUCAR</h1>
+          </Link>
+        </div>
+        <label htmlFor="checkbox" id="togg">
+          &#9776;
+        </label>
+        <input type="checkbox" className="d-none" id="checkbox" />
+        <div className="list text-center">
+          <label htmlFor="checkbox" id="togg">
+            <i className="bi bi-x-lg"></i>
+          </label>
+          <Link to="home" className="text-dark">
+            home
+          </Link>
+          <Link to="packages" className="text-dark">
+            packages
+          </Link>
+          <Link to="show" className="text-dark">
+            show
+          </Link>
+          <Link to="services" className="text-dark">
+            services
+          </Link>
+          <Link to="review" className="text-dark">
+            review
+          </Link>
+          <Link to="contact" className="text-dark">
+            contact
+          </Link>
+          <Link
+            to="#"
+            className="btn rounded-3 text-white border-bottom-0"
+            style={{ backgroundColor: "#F94A29" }}
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">AboutUs</Nav.Link>
-          </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+           Login
+          </Link>
+        </div>
+      </nav>
+    </header>
   );
-}
+};
 
 export default Header;
