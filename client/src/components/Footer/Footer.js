@@ -1,111 +1,118 @@
-import React from "react";
+import React from 'react';
+import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
-import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
-import { Link } from "react-router-dom";
-import "../../styles/footer.css";
-
-const quickLinks = [
-  {
-    path: "/about",
-    display: "About",
-  },
-
-  {
-    path: "#",
-    display: "Privacy Policy",
-  },
-
-  {
-    path: "/cars",
-    display: "Car Listing",
-  },
-  {
-    path: "/blogs",
-    display: "Blog",
-  },
-
-  {
-    path: "/contact",
-    display: "Contact",
-  },
-];
-
-const Footer = () => {
-  const date = new Date();
-  const year = date.getFullYear();
+export default function App() {
   return (
-    <footer className="footer">
-      <Container>
-        <Row>
-          <Col lg="4" md="4" sm="12">
-            <div className="logo footer__logo">
-              <h1>
-                <Link to="/home" className=" d-flex align-items-center gap-2">
-                  <i class="ri-car-line"></i>
-                  <span>
-                    Rent Car <br /> Service
-                  </span>
-                </Link>
-              </h1>
-            </div>
-            <p className="footer__logo-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur, distinctio, itaque reiciendis ab cupiditate harum ex
-              quam veniam, omnis expedita animi quibusdam obcaecati mollitia?
-              Delectus et ad illo recusandae temporibus?
-            </p>
-          </Col>
+    <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
+      <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
+        <div>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="facebook-f" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="twitter" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="google" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="instagram" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="linkedin" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="github" />
+          </a>
+        </div>
+      </section>
 
-          <Col lg="2" md="4" sm="6">
-            <div className="mb-4">
-              <h5 className="footer__link-title">Quick Links</h5>
-              <ListGroup>
-                {quickLinks.map((item, index) => (
-                  <ListGroupItem key={index} className="p-0 mt-3 quick__link">
-                    <Link to={item.path}>{item.display}</Link>
-                  </ListGroupItem>
-                ))}
-              </ListGroup>
-            </div>
-          </Col>
-
-          <Col lg="3" md="4" sm="6">
-            <div className="mb-4">
-              <h5 className="footer__link-title mb-4">Head Office</h5>
-              <p className="office__info">123 Zindabazar, Sylhet, Bangladesh</p>
-              <p className="office__info">Phone: +0995345875365</p>
-
-              <p className="office__info">Email: muhib5532@gmail.com</p>
-
-              <p className="office__info">Office Time: 10am - 7pm</p>
-            </div>
-          </Col>
-
-          <Col lg="3" md="4" sm="12">
-            <div className="mb-4">
-              <h5 className="footer__link-title">Newsletter</h5>
-              <p className="section__description">Subscribe our newsletter</p>
-              <div className="newsletter">
-                <input type="email" placeholder="Email" />
-                <span>
-                  <i class="ri-send-plane-line"></i>
-                </span>
-              </div>
-            </div>
-          </Col>
-
-          <Col lg="12">
-            <div className="footer__bottom">
-              <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
-                <i class="ri-copyright-line"></i>Copyright {year}, Developed by
-                Muhibur Rahman. All rights reserved.
+      <section className=''>
+        <MDBContainer className='text-center text-md-start mt-5'>
+          <MDBRow className='mt-3'>
+            <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>
+                <MDBIcon icon="gem" className="me-auto" />
+                Car Rental
+              </h6>
+              <p>
+                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit.
               </p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </footer>
-  );
-};
+            </MDBCol>
 
-export default Footer;
+            <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Angular
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  React
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Vue
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Laravel
+                </a>
+              </p>
+            </MDBCol>
+
+            <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Pricing
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Settings
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Orders
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Help
+                </a>
+              </p>
+            </MDBCol>
+
+            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+              <p>
+                <MDBIcon icon="home" className="me-2" />
+                New York, NY 10012, US
+              </p>
+              <p>
+                <MDBIcon icon="envelope" className="me-3" />
+                carrental@gmail.com
+              </p>
+              <p>
+                <MDBIcon icon="phone" className="me-3" /> + 212 6 23 45 67 88
+              </p>
+              <p>
+                <MDBIcon icon="print" className="me-3" /> + 212 6 23 45 67 88
+              </p>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
+
+      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+        © 2023 Copyright All Rights Reserved.
+      </div>
+    </MDBFooter>
+  );
+}
