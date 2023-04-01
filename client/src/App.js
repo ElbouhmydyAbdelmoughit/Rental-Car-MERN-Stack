@@ -3,9 +3,8 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import Home from "./pages/Home";
-// import Login from "./components/Login/Login";
+import Login from "./pages/Login/Login";
 // import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
 // import Client from "./components/Client/Client";
@@ -14,17 +13,14 @@ import ERROR404 from "./pages/ERROR404/ERROR404";
 
 const App = () => {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<ERROR404 />} />
-          <Route path="/" element={<Home />} />
-          {/* <Route path="Login" element={<Login />} />
-          <Route path="Register" element={<Register />} />
-          <Route path="Reset" element={<Reset />} />
-          <Route path="Client" element={<Client />} />
-          <Route path="Livreur" element={<Livreur />} />  */}
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<ERROR404 />} />
+        <Route path="/" element={<Home />} />
+        <Route path="Login" element={<Login />} />
+        {/* <Route path="Register" element={<Register />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 };
 
