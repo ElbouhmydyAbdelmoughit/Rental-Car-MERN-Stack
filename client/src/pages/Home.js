@@ -5,11 +5,11 @@ import Hero from "../components/Hero/Hero";
 
 const Home = () => {
   return (
-    <div className="m-0">
+    <>
       <Header />
       <Hero />
       <Footer />
-    </div>
+    </>
   );
 };
 export default Home;
