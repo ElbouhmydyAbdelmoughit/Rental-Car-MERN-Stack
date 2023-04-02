@@ -16,7 +16,7 @@ app.use(
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
-app.use("/", authRouter);
+app.use("/auth", authRouter);
 app.use("/car", carRouter);
 app.use(ErrorHandler);
 

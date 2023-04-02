@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
 import login from "../../assets/img/Login.jpg";
-import env from "react-dotenv";
 import toastGenerator from "../../helpers/toastGenerator";
 import axios from "axios";
 import {
@@ -28,9 +27,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(process.env.REACT_APP_BASE_URL);
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}auth/login`, { ...user })
+      .post(`http://localhost:2000/auth/login`, { ...user })
       .then((data) => {
         console.log(data);
         if (data.data.message) {
@@ -43,8 +41,8 @@ const Login = () => {
   };
 
   return (
-    <div className="">
-      <form action="">
+    <div className="mx-auto w-75">
+      <form>
         <MDBContainer className="my-5">
           <MDBRow className="g-0 align-items-center">
             <MDBCol col="6">
@@ -129,14 +127,8 @@ const Login = () => {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-
-            <MDBCol col="6" style={{ width: "50vh" }}>
-              <img
-                src={login}
-                class="w-100 h-50 rounded-4 shadow-4"
-                alt=""
-                fluid
-              />
+            <MDBCol col="6">
+              <img src={login} class="w-100 rounded-4 shadow-4" alt="image" />
             </MDBCol>
           </MDBRow>
         </MDBContainer>
