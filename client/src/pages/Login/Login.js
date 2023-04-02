@@ -14,9 +14,9 @@ import {
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -28,17 +28,16 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    console.log(process.env.REACT_APP_BASE_URL);
     axios
-      .post(`${BASE_URL}/auth/login`, { ...user })
-      .then((user) => {
-        console.log(user.data.message);
-        if (user.data.message) {
-          toastGenerator("success", user.data.message);
-        } else toastGenerator("error", user.data);
+      .post(`${process.env.REACT_APP_BASE_URL}auth/login`, { ...user })
+      .then((data) => {
+        console.log(data);
+        if (data.data.message) {
+          toastGenerator("success", data.data.message);
+        } else toastGenerator("error", data.data);
       })
       .catch((error) => {
-        console.log("test");
         console.log(error);
       });
   };
@@ -142,6 +141,7 @@ const Login = () => {
           </MDBRow>
         </MDBContainer>
       </form>
+      <ToastContainer />
     </div>
   );
 };
