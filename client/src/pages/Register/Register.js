@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "./Register.css";
 import login from "../../assets/img/Login.jpg";
 import toastGenerator from "../../helpers/toastGenerator";
 import axios from "axios";
@@ -15,14 +15,16 @@ import {
 } from "mdb-react-ui-kit";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage"
+import useLocalStorage from "react-use-localstorage";
 
-const Login = () => {
+const Register = () => {
   const [user, setUser] = useState({
+    name: "",
     email: "",
     password: "",
+    confirm_password: "",
   });
-const [token, setToken] = useLocalStorage("token","")
+  const [token, setToken] = useLocalStorage("token", "");
 
   const HandleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -34,7 +36,7 @@ const [token, setToken] = useLocalStorage("token","")
       .post(`http://localhost:2000/auth/login`, { ...user })
       .then((data) => {
         if (data.data.message) {
-          setToken(data.data.token)
+          setToken(data.data.token);
           toastGenerator("success", data.data.message);
         } else toastGenerator("error", data.data);
       })
@@ -42,7 +44,7 @@ const [token, setToken] = useLocalStorage("token","")
         console.log(error);
       });
   };
-console.log(token);
+  console.log(token);
   return (
     <div className="mx-auto w-75">
       <form>
@@ -58,9 +60,16 @@ console.log(token);
               >
                 <MDBCardBody className="p-5 shadow-5 text-center">
                   <h2 className="fw-bold mb-5" style={{ color: "#395b71" }}>
-                    Login now
+                    Sign up now
                   </h2>
 
+                  <MDBInput
+                    wrapperClass="mb-4"
+                    label="Name"
+                    name="name"
+                    type="name"
+                    onChange={HandleChange}
+                  />
                   <MDBInput
                     wrapperClass="mb-4"
                     label="Email"
@@ -75,7 +84,13 @@ console.log(token);
                     type="password"
                     onChange={HandleChange}
                   />
-
+                  <MDBInput
+                    wrapperClass="mb-4"
+                    label="Confirm Password"
+                    name="confirm_password"
+                    type="confirm_password"
+                    onChange={HandleChange}
+                  />
                   <MDBBtn
                     className="w-100 mb-4"
                     size="md"
@@ -87,49 +102,6 @@ console.log(token);
                   >
                     sign up
                   </MDBBtn>
-
-                  <div className="text-center">
-                    <Link to={"/Register"}>
-                      create account
-                    </Link>
-                    <p>or sign up with:</p>
-
-                    <MDBBtn
-                      tag="a"
-                      color="none"
-                      className="mx-3"
-                      style={{ color: "#395b71" }}
-                    >
-                      <MDBIcon fab icon="facebook-f" size="sm" />
-                    </MDBBtn>
-
-                    <MDBBtn
-                      tag="a"
-                      color="none"
-                      className="mx-3"
-                      style={{ color: "#395b71" }}
-                    >
-                      <MDBIcon fab icon="twitter" size="sm" />
-                    </MDBBtn>
-
-                    <MDBBtn
-                      tag="a"
-                      color="none"
-                      className="mx-3"
-                      style={{ color: "#395b71" }}
-                    >
-                      <MDBIcon fab icon="google" size="sm" />
-                    </MDBBtn>
-
-                    <MDBBtn
-                      tag="a"
-                      color="none"
-                      className="mx-3"
-                      style={{ color: "#395b71" }}
-                    >
-                      <MDBIcon fab icon="github" size="sm" />
-                    </MDBBtn>
-                  </div>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -144,4 +116,4 @@ console.log(token);
   );
 };
 
-export default Login;
+export default Register;
