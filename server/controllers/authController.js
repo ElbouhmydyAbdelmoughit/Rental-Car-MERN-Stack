@@ -44,7 +44,7 @@ const Register = async (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
       const userExist = await User.findOne({ email: req.body.email });
-      if (userExist) throw new Error("This User Already Exist");
+      if (userExist) throw new Error(`This Email Already Exist`);
       if (!userExist) {
         const hash_password = await bcrypt.hash(req.body.password, salt);
         if (hash_password) {
@@ -64,6 +64,7 @@ const Register = async (req, res, next) => {
         }
       }
     } else {
+      console.log(errors.errors[0].msg);
       throw new Error(errors.errors[0].msg);
     }
   } catch (error) {
