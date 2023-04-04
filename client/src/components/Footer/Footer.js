@@ -6,6 +6,7 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { NavLink } from "react-router-dom";
 
 export default function App() {
   return (
@@ -13,9 +14,9 @@ export default function App() {
       <section className="">
         <MDBContainer className="text-center text-md-start mt-5">
           <MDBRow className="mt-3">
-            <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
+            <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4 text-black">
               <h6 className="text-uppercase fw-bold mb-4">
-                <span style={{color:"red"}}>Car Rental</span>
+                <span style={{ color: "red" }}>Car Rental</span>
               </h6>
               <p>
                 Here you can use rows and columns to organize your footer
@@ -24,8 +25,13 @@ export default function App() {
               </p>
             </MDBCol>
 
-            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4" style={{color:"red"}}>Products</h6>
+            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4 text-black">
+              <h6
+                className="text-uppercase fw-bold mb-4"
+                style={{ color: "red" }}
+              >
+                Products
+              </h6>
               <p>
                 <a href="#!" className="text-reset">
                   Home
@@ -42,14 +48,17 @@ export default function App() {
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  Login
-                </a>
+                <NavLink className="text-black" to={"/Login"}>Login</NavLink>
               </p>
             </MDBCol>
 
-            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4" style={{color:"red"}}>Useful links</h6>
+            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4 text-black">
+              <h6
+                className="text-uppercase fw-bold mb-4"
+                style={{ color: "red" }}
+              >
+                Useful links
+              </h6>
               <p>
                 <a href="#!" className="text-reset">
                   Pricing
@@ -72,8 +81,13 @@ export default function App() {
               </p>
             </MDBCol>
 
-            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4" style={{color:"red"}}>Contact</h6>
+            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4 text-black">
+              <h6
+                className="text-uppercase fw-bold mb-4"
+                style={{ color: "red" }}
+              >
+                Contact
+              </h6>
               <p>
                 <MDBIcon icon="home" className="me-2" />
                 New York, NY 10012, US

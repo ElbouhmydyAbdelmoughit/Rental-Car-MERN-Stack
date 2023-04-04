@@ -9,13 +9,12 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBIcon,
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { Field, Form } from "react-final-form";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -24,7 +23,6 @@ const Register = () => {
     password: "",
     confirm_password: "",
   });
-  const [token, setToken] = useLocalStorage("token", "");
 
   const HandleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -32,19 +30,33 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (user.name.trim() === "") {
+      toastGenerator("error", "Field Name is Required");
+    } else if (user.email.trim() === "") {
+      toastGenerator("error", "Field Email is Required");
+    } else if (user.password.trim() === "") {
+      toastGenerator("error", "Field Password is Required");
+    } else if (user.confirm_password.trim() === "") {
+      toastGenerator("error", "Field Cofirm Password is Required");
+    } else if (user.password.trim() !== user.confirm_password.trim()) {
+      toastGenerator("error", "Password and Confirm Password Not Match");
+    }
+
     axios
-      .post(`http://localhost:2000/auth/login`, { ...user })
+      .post(`http://localhost:2000/auth/register`, { ...user })
       .then((data) => {
-        if (data.data.message) {
-          setToken(data.data.token);
-          toastGenerator("success", data.data.message);
-        } else toastGenerator("error", data.data);
+        if (data.data) {
+          toastGenerator("success", data.data);
+        } else {
+          console.log(data.response.data.message);
+          toastGenerator("error", data.response.data.message);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  console.log(token);
   return (
     <div className="mx-auto w-75">
       <form>
@@ -68,6 +80,7 @@ const Register = () => {
                     label="Name"
                     name="name"
                     type="name"
+                    value={user.name}
                     onChange={HandleChange}
                   />
                   <MDBInput
@@ -75,6 +88,7 @@ const Register = () => {
                     label="Email"
                     name="email"
                     type="email"
+                    value={user.email}
                     onChange={HandleChange}
                   />
                   <MDBInput
@@ -82,13 +96,15 @@ const Register = () => {
                     label="Password"
                     name="password"
                     type="password"
+                    value={user.password}
                     onChange={HandleChange}
                   />
                   <MDBInput
                     wrapperClass="mb-4"
                     label="Confirm Password"
                     name="confirm_password"
-                    type="confirm_password"
+                    type="password"
+                    value={user.confirm_password}
                     onChange={HandleChange}
                   />
                   <MDBBtn
