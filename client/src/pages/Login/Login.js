@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import login from "../../assets/img/Login.jpg";
 import toastGenerator from "../../helpers/toastGenerator";
@@ -14,15 +14,21 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import { ToastContainer } from "react-toastify";
-import { Link } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useLocalStorage from "react-use-localstorage";
 
 const Login = () => {
+  const location = useLocation();
+  const navigation = useNavigate();
+  useEffect(() => {
+    toastGenerator("success", location.state);
+  }, [location.state]);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-const [token, setToken] = useLocalStorage("token","")
+  const [token, setToken] = useLocalStorage("token", "");
 
   const HandleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -30,19 +36,28 @@ const [token, setToken] = useLocalStorage("token","")
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (user.email.trim() === "") {
+      toastGenerator("error", "Field Email is Required");
+    } else if (user.password.trim() === "") {
+      toastGenerator("error", "Field Password is Required");
+    }
     axios
       .post(`http://localhost:2000/auth/login`, { ...user })
       .then((data) => {
         if (data.data.message) {
-          setToken(data.data.token)
+          setToken(data.data.token);
           toastGenerator("success", data.data.message);
+          setTimeout(() => {
+            navigation("/");
+          }, 4000);
         } else toastGenerator("error", data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-console.log(token);
+  console.log(token);
   return (
     <div className="mx-auto w-75">
       <form>
@@ -89,9 +104,7 @@ console.log(token);
                   </MDBBtn>
 
                   <div className="text-center">
-                    <Link to={"/Register"}>
-                      create account
-                    </Link>
+                    <Link to={"/Register"}>create account</Link>
                     <p>or sign up with:</p>
 
                     <MDBBtn

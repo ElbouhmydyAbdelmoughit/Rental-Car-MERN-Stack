@@ -13,10 +13,11 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import { ToastContainer } from "react-toastify";
-import { Link } from "react-router-dom";
-import { Field, Form } from "react-final-form";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  
+  const navigation = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -47,7 +48,7 @@ const Register = () => {
       .post(`http://localhost:2000/auth/register`, { ...user })
       .then((data) => {
         if (data.data) {
-          toastGenerator("success", data.data);
+          navigation("/login", { state: data.data });
         } else {
           console.log(data.response.data.message);
           toastGenerator("error", data.response.data.message);
@@ -122,7 +123,11 @@ const Register = () => {
               </MDBCard>
             </MDBCol>
             <MDBCol col="6">
-              <img src={login} class="w-100 rounded-4 shadow-4" alt="image" />
+              <img
+                src={login}
+                class="w-100 rounded-4 shadow-4"
+                alt="login view"
+              />
             </MDBCol>
           </MDBRow>
         </MDBContainer>
