@@ -5,7 +5,10 @@ const Sidebar = () => {
     <>
       <div className="container-fluid">
         <div className="row flex-nowrap">
-          <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div
+            className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark"
+            style={{ minWidth: "200px" }}
+          >
             <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
               <a
                 href="/"
@@ -193,12 +196,12 @@ const Sidebar = () => {
                       >
                         <thead className="bg-black text-white">
                           <tr>
-                            <th>Order</th>
-                            <th>Company name</th>
-                            <th>status</th>
-                            <th>Total</th>
-                            <th>Created</th>
-                            <th></th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>#</th>
                           </tr>
                         </thead>
                         <tbody className="table-body">
@@ -212,8 +215,9 @@ const Sidebar = () => {
                             </td>
                             <td>$2674.00</td>
                             <td>Today</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                           <tr className="cell-1">
@@ -226,8 +230,9 @@ const Sidebar = () => {
                             </td>
                             <td>$3454.00</td>
                             <td>Yesterday</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                           <tr className="cell-1">
@@ -240,8 +245,9 @@ const Sidebar = () => {
                             </td>
                             <td>$6274.00</td>
                             <td>May 12,2020</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                           <tr className="cell-1">
@@ -254,8 +260,9 @@ const Sidebar = () => {
                             </td>
                             <td>$6375.00</td>
                             <td>May 11,2020</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                         </tbody>
