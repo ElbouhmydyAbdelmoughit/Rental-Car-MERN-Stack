@@ -1,185 +1,65 @@
 import React from "react";
 import "./Sidebar.css";
+import "tippy.js/animations/scale.css";
+import { NavLink, useNavigate } from "react-router-dom";
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
   return (
     <>
       <div className="container-fluid">
         <div className="row flex-nowrap">
-          <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-              <a
-                href="/"
-                className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+          <input type="checkbox" id="menu" className="d-none" />
+          <div
+            style={{ background: "#000" }}
+            id="sid"
+            className="col-auto col-xl-2 min-vh-100 text-center"
+          >
+            <nav className="text-sm-start mt-5 pb-5 p-sm-2">
+              <NavLink className="nav-link p-1 p-sm-2 text-white" to={"/"}>
+                <i className="bi bi-house fs-5 me-sm-2"></i>
+                <span className="d-none d-sm-inline">Home</span>
+              </NavLink>
+              <br />
+              <NavLink className="nav-link p-1 p-sm-2 text-white" to={"/car"}>
+                <i className="bi bi-car-front-fill fs-5 me-sm-2"></i>
+                <span className="d-none d-sm-inline">Cars</span>
+              </NavLink>
+              <br />
+              <NavLink className="nav-link p-1 p-sm-2 text-white" to={"/order"}>
+                <i className="bi bi-cart4 fs-5 me-sm-2"></i>
+                <span className="d-none d-sm-inline">Orders</span>
+              </NavLink>
+              <br />
+              <NavLink
+                className="nav-link p-1 p-sm-2 text-white"
+                to={"/client"}
               >
-                <span className="fs-5 d-none d-sm-inline">Menu</span>
-              </a>
-              <ul
-                className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                id="menu"
+                <i className="bi bi-people me-sm-2 fs-5"></i>
+                <span className="d-none d-sm-inline">Client</span>
+              </NavLink>
+              <br />
+              <NavLink
+                className="nav-link p-1 p-sm-2 text-white"
+                to={"/profile"}
               >
-                <li className="nav-item">
-                  <a href="#" className="nav-link align-middle px-0">
-                    <i className="fs-4 bi-house"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">Home</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#submenu1"
-                    data-bs-toggle="collapse"
-                    className="nav-link px-0 align-middle"
-                  >
-                    <i className="fs-4 bi-speedometer2"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">Dashboard</span>{" "}
-                  </a>
-                  <ul
-                    className="collapse show nav flex-column ms-1"
-                    id="submenu1"
-                    data-bs-parent="#menu"
-                  >
-                    <li className="w-100">
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Item</span> 1{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Item</span> 2{" "}
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" className="nav-link px-0 align-middle">
-                    <i className="fs-4 bi-table"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">Orders</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#submenu2"
-                    data-bs-toggle="collapse"
-                    className="nav-link px-0 align-middle "
-                  >
-                    <i className="fs-4 bi-bootstrap"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">Bootstrap</span>
-                  </a>
-                  <ul
-                    className="collapse nav flex-column ms-1"
-                    id="submenu2"
-                    data-bs-parent="#menu"
-                  >
-                    <li className="w-100">
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Item</span> 1
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Item</span> 2
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a
-                    href="#submenu3"
-                    data-bs-toggle="collapse"
-                    className="nav-link px-0 align-middle"
-                  >
-                    <i className="fs-4 bi-grid"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">Products</span>{" "}
-                  </a>
-                  <ul
-                    className="collapse nav flex-column ms-1"
-                    id="submenu3"
-                    data-bs-parent="#menu"
-                  >
-                    <li className="w-100">
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Product</span> 1
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Product</span> 2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Product</span> 3
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="nav-link px-0">
-                        {" "}
-                        <span className="d-none d-sm-inline">Product</span> 4
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" className="nav-link px-0 align-middle">
-                    <i className="fs-4 bi-people"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">Customers</span>{" "}
-                  </a>
-                </li>
-              </ul>
-              <hr />
-              <div className="dropdown pb-4">
-                <a
-                  href="#"
-                  className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                  id="dropdownUser1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="hugenerd"
-                    width="30"
-                    height="30"
-                    className="rounded-circle"
-                  />
-                  <span className="d-none d-sm-inline mx-1">loser</span>
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-dark text-small shadow"
-                  aria-labelledby="dropdownUser1"
-                >
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      New project...
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                <i className="bi bi-person me-sm-2 fs-5"></i>
+                <span className="d-none d-sm-inline">Profil</span>
+              </NavLink>
+              <br />
+              <NavLink className="nav-link p-1 p-sm-2 text-white" to={"/#"}>
+                <i className="bi bi-sliders2 me-sm-2 fs-5"></i>
+                <span className="d-none d-sm-inline">Settings</span>
+              </NavLink>
+              <br />
+              <button className="nav-link p-1 p-sm-2 text-white" to={logout}>
+                <i className="bi bi-box-arrow-right me-sm-2 fs-5"></i>
+                <span className="d-none d-sm-inline">Logout</span>
+              </button>
+            </nav>
           </div>
           <div className="col py-3">
             <div className="container mt-5">
@@ -187,18 +67,15 @@ const Sidebar = () => {
                 <div className="col-md-10">
                   <div className="rounded">
                     <div className="table-responsive table-borderless">
-                      <table
-                        className="table responsive"
-                        style={{ minWidth: "800px" }}
-                      >
+                      <table className="table" style={{ minWidth: "800px" }}>
                         <thead className="bg-black text-white">
                           <tr>
-                            <th>Order</th>
-                            <th>Company name</th>
-                            <th>status</th>
-                            <th>Total</th>
-                            <th>Created</th>
-                            <th></th>
+                            <th className="fw-bold">Id</th>
+                            <th className="fw-bold">Name</th>
+                            <th className="fw-bold">Model</th>
+                            <th className="fw-bold">Price</th>
+                            <th className="fw-bold">Description</th>
+                            <th className="fw-bold">#</th>
                           </tr>
                         </thead>
                         <tbody className="table-body">
@@ -212,8 +89,9 @@ const Sidebar = () => {
                             </td>
                             <td>$2674.00</td>
                             <td>Today</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between text-black">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                           <tr className="cell-1">
@@ -226,8 +104,9 @@ const Sidebar = () => {
                             </td>
                             <td>$3454.00</td>
                             <td>Yesterday</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between text-black">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                           <tr className="cell-1">
@@ -240,8 +119,9 @@ const Sidebar = () => {
                             </td>
                             <td>$6274.00</td>
                             <td>May 12,2020</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between text-black">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                           <tr className="cell-1">
@@ -254,8 +134,9 @@ const Sidebar = () => {
                             </td>
                             <td>$6375.00</td>
                             <td>May 11,2020</td>
-                            <td>
-                              <i className="fa fa-ellipsis-h text-black-50"></i>
+                            <td className="d-flex justify-content-between text-black">
+                              <i className="bi bi-trash"></i>
+                              <i className="bi bi-pen"></i>
                             </td>
                           </tr>
                         </tbody>
