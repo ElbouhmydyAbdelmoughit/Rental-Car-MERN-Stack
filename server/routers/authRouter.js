@@ -1,7 +1,8 @@
 const authRouter = require("express").Router();
-const { Login, Register } = require("../controllers/authController");
+const { Login, Register, getAll } = require("../controllers/authController");
 const { check } = require("express-validator");
 
+authRouter.get("/getAll", getAll);
 authRouter.post(
   "/login",
   [
