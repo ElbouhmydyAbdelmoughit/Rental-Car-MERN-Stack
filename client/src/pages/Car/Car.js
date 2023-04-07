@@ -1,72 +1,47 @@
-
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Car = () => {
+  const [car, setCar] = useState([]);
+  useEffect(() => {
+    getAllCars();
+  }, [car]);
 
+  const getAllCars = async () => {
+    try {
+      await axios.get("http://localhost:2000/car").then((data) => {
+        setCar(data.data.Car);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <table className="table" style={{ minWidth: "800px" }}>
       <thead className="bg-black text-white">
         <tr>
-          <th className="fw-bold">Id</th>
           <th className="fw-bold">Name</th>
           <th className="fw-bold">Model</th>
           <th className="fw-bold">Price</th>
           <th className="fw-bold">Description</th>
+          <th className="fw-bold text-wrap">Image</th>
           <th className="fw-bold">#</th>
         </tr>
       </thead>
       <tbody className="table-body">
-        <tr className="cell-1">
-          <td>SO-13487</td>
-          <td>Gasper Antunes</td>
-          <td>
-            <span className="badge badge-success">Fullfilled</span>
-          </td>
-          <td>$2674.00</td>
-          <td>Today</td>
-          <td className="d-flex justify-content-between text-black">
-            <i className="bi bi-trash"></i>
-            <i className="bi bi-pen"></i>
-          </td>
-        </tr>
-        <tr className="cell-1">
-          <td>SO-13453</td>
-          <td>Aartsen van</td>
-          <td>
-            <span className="badge badge-info">Confirmed</span>
-          </td>
-          <td>$3454.00</td>
-          <td>Yesterday</td>
-          <td className="d-flex justify-content-between text-black">
-            <i className="bi bi-trash"></i>
-            <i className="bi bi-pen"></i>
-          </td>
-        </tr>
-        <tr className="cell-1">
-          <td>SO-13498</td>
-          <td>Trashes Habard</td>
-          <td>
-            <span className="badge badge-danger">Partially shipped</span>
-          </td>
-          <td>$6274.00</td>
-          <td>May 12,2020</td>
-          <td className="d-flex justify-content-between text-black">
-            <i className="bi bi-trash"></i>
-            <i className="bi bi-pen"></i>
-          </td>
-        </tr>
-        <tr className="cell-1">
-          <td>SO-16499</td>
-          <td>Samban Hubart</td>
-          <td>
-            <span className="badge badge-success">Fullfilled</span>
-          </td>
-          <td>$6375.00</td>
-          <td>May 11,2020</td>
-          <td className="d-flex justify-content-between text-black">
-            <i className="bi bi-trash"></i>
-            <i className="bi bi-pen"></i>
-          </td>
-        </tr>
+        {car.map((c, i) => (
+          <tr className="cell-1" key={i}>
+            <td className="">{c.name}</td>
+            <td className="">{c.model}</td>
+            <td className="">{c.price}</td>
+            <td className="">{c.description}</td>
+            <td className="">{c.image}</td>
+            <td className="d-flex justify-content-between text-black">
+              <i className="bi bi-trash"></i>
+              <i className="bi bi-pen"></i>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

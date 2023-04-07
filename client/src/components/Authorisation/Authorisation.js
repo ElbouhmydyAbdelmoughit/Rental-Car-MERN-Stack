@@ -4,8 +4,6 @@ const Authorisation = () => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    // const e = JSON.parse(token);
-    console.log(jwt(token));
     return jwt(token);
   }
 

@@ -1,6 +1,5 @@
 const Car = require("../models/Car");
 const { validationResult } = require("express-validator");
-const carRouter = require("../routers/carRouter");
 
 const add = async (req, res, next) => {
   const errors = validationResult(req);

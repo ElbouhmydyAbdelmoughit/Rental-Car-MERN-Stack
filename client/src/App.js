@@ -3,8 +3,8 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
@@ -26,9 +26,9 @@ const App = () => {
         <Route path="Register" element={<Register />} />
         <Route element={<PrivateAdminRoute />}>
           <Route element={<Dashboard />}>
-            <Route index path="car" element={<Order />} />
+            <Route index path="order" element={<Order />} />
             <Route path="client" element={<Client />} />
-            <Route path="order" element={<Car />} />
+            <Route path="car" element={<Car />} />
           </Route>
         </Route>
       </Routes>
