@@ -1,4 +1,7 @@
+
+
 const Car = () => {
+
   return (
     <table className="table" style={{ minWidth: "800px" }}>
       <thead className="bg-black text-white">

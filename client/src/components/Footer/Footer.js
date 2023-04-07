@@ -33,17 +33,17 @@ export default function App() {
                 Products
               </h6>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="#home" className="text-reset">
                   Home
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="#about" className="text-reset">
                   AboutUs
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="#cars" className="text-reset">
                   Cars
                 </a>
               </p>

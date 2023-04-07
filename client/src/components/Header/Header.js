@@ -12,10 +12,10 @@ function Header() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">AboutUs</Nav.Link>
-            <Nav.Link href="#link">Cars</Nav.Link>
+          <Nav className="me-auto" style={{ color: "black !important" }}>
+            <Nav.Link className="text-black" href="#home">Home</Nav.Link>
+            <Nav.Link className="text-black" href="#about">AboutUs</Nav.Link>
+            <Nav.Link className="text-black" href="#cars">Cars</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
             <Nav.Link

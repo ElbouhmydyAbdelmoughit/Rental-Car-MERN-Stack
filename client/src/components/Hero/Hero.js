@@ -9,7 +9,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 const Hero = (props) => {
   return (
     <main id="home">
-      <div className="container">
+      <div className="container" id="home">
         <div className="row d-flex justify-content-between align-items-center">
           <div
             className="col-md text-center text-sm-start"
@@ -26,7 +26,7 @@ const Hero = (props) => {
           </div>
         </div>
       </div>
-      <div class="row col-12 text-wrap d-md-flex d-block text-black">
+      <div class="row col-12 text-wrap d-md-flex d-block text-black" id="about">
         <div class="col-6" id="image_about">
           <img
             class="img-fluid w-100 mx-auto  d-none d-md-block"
@@ -53,6 +53,7 @@ const Hero = (props) => {
       <div
         className="container mx-auto d-flex justify-content-between align-content-between align-items-between flex-wrap"
         style={{ marginTop: 110, marginBottom: 110 }}
+        id="cars"
       >
         <Card sx={{ maxWidth: 345 }} className="mb-5">
           <CardActionArea style={{ marginRight: 20 }}>

@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard/Dashdoard";
 import Order from "./pages/Order/Order";
 import Client from "./pages/Client/Client";
 import Car from "./pages/Car/Car";
+import PrivateAdminRoute from "./components/PrivateAdminRoute/PrivateAdminRoute";
 
 const App = () => {
   return (
@@ -23,10 +24,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
-        <Route element={<Dashboard />}>
-          <Route index path="car" element={<Order />} />
-          <Route path="client" element={<Client />} />
-          <Route path="order" element={<Car />} />
+        <Route element={<PrivateAdminRoute />}>
+          <Route element={<Dashboard />}>
+            <Route index path="car" element={<Order />} />
+            <Route path="client" element={<Client />} />
+            <Route path="order" element={<Car />} />
+          </Route>
         </Route>
       </Routes>
       <Routes></Routes>
