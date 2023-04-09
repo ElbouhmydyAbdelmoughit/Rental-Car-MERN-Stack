@@ -1,8 +1,8 @@
 import axios from "axios";
 import Modal from "react-modal";
 import React from "react";
-import { MDBInput } from "mdb-react-ui-kit";
 import { useState, useEffect } from "react";
+import toastGenerator from "../../helpers/toastGenerator"
 
 const Car = () => {
   const [car, setCar] = useState([]);
@@ -36,9 +36,21 @@ const Car = () => {
     setAddCar({ ...addCar, image: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(addCar);
+    console.log(addCar)
+    try {
+      await axios.post("http://localhost:2000/car/add",addCar).then((data)=>{
+      if (data.data.msg) {
+        toastGenerator('success',data.data.msg)
+      }else{
+        toastGenerator('error',data.response.data.message)
+        console.log(data.response.data.message)
+      }
+    })
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -129,7 +141,7 @@ const Car = () => {
               name="image"
               placeholder="image"
               className="mb-4"
-              onChange={handleChange}
+              onChange={handlePhoto}
             />
             <button
               className="btn text-white"
