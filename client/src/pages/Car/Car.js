@@ -7,6 +7,13 @@ import { useState, useEffect } from "react";
 const Car = () => {
   const [car, setCar] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [addCar, setAddCar] = useState({
+    name: "",
+    model: "",
+    price: "",
+    description: "",
+    image: "",
+  });
   useEffect(() => {
     getAllCars();
   }, [car]);
@@ -20,6 +27,20 @@ const Car = () => {
       console.log(error);
     }
   };
+
+  const handleChange = (e) => {
+    setAddCar({ ...addCar, [e.target.name]: e.target.value });
+  };
+
+  const handlePhoto = (e) => {
+    setAddCar({ ...addCar, image: e.target.files[0] });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(addCar);
+  };
+
   return (
     <>
       <div className="mb-4">
@@ -75,12 +96,48 @@ const Car = () => {
             <i className="bi bi-x text-black fs-1"></i>
           </button>
           <div className="ms-5 me-5 d-flex flex-column justify-content-between align-items-center ">
-            <input type="text" placeholder="Name" className="mb-4" />
-            <input type="text" placeholder="Model" className="mb-4" />
-            <input type="number" placeholder="price" className="mb-4" />
-            <input type="text" placeholder="description" className="mb-4" />
-            <input type="file" placeholder="image" className="mb-4" />
-            <button className="btn text-white" style={{background:"#000", padding:"8px 60px"}}>Add Car</button>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              className="mb-4"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="model"
+              placeholder="Model"
+              className="mb-4"
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              name="price"
+              placeholder="price"
+              className="mb-4"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="description"
+              className="mb-4"
+              onChange={handleChange}
+            />
+            <input
+              type="file"
+              name="image"
+              placeholder="image"
+              className="mb-4"
+              onChange={handleChange}
+            />
+            <button
+              className="btn text-white"
+              style={{ background: "#000", padding: "8px 60px" }}
+              onClick={handleSubmit}
+            >
+              Add Car
+            </button>
           </div>
         </Modal>
       </div>
