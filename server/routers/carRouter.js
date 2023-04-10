@@ -12,11 +12,10 @@ const {
 carRouter.post(
   "/add",
   [
-    check("name", "Please Enter Name").trim().notEmpty(),
-    check("model", "Please Enter Dubet Date").trim().notEmpty(),
-    check("price", "Please Enter Final Date").trim().notEmpty(),
+    check("name", "Please Enter Name").trim().not().isEmpty(),
+    check("model", "Please Enter Model").trim().notEmpty(),
+    check("price", "Please Enter Price").trim().notEmpty(),
     check("description", "Please Enter Description").trim().notEmpty(),
-    check("image", "Please Add Image").trim().notEmpty(),
   ],
   upload.single("image"),
   add

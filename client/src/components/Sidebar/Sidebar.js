@@ -2,12 +2,15 @@ import React from "react";
 import "./Sidebar.css";
 import "tippy.js/animations/scale.css";
 import { NavLink, useNavigate } from "react-router-dom";
+
 const Sidebar = () => {
   const navigate = useNavigate();
+
   const logout = () => {
-    localStorage.removeItem("user");
-    navigate("/");
+    localStorage.removeItem("token");
+    navigate("/login");
   };
+
   return (
     <div
       style={{ background: "#000" }}
@@ -45,7 +48,7 @@ const Sidebar = () => {
           <span className="d-none d-sm-inline">Settings</span>
         </NavLink>
         <br />
-        <button className="nav-link p-1 p-sm-2 text-white" to={logout}>
+        <button className="nav-link p-1 p-sm-2 text-white" onClick={logout}>
           <i className="bi bi-box-arrow-right me-sm-2 fs-5"></i>
           <span className="d-none d-sm-inline">Logout</span>
         </button>

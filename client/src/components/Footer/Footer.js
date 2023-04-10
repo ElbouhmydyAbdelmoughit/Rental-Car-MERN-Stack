@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 export default function App() {
   return (
     <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
-      <section className="">
+      <section className="pt-1">
         <MDBContainer className="text-center text-md-start mt-5">
           <MDBRow className="mt-3">
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4 text-black">
@@ -33,22 +33,24 @@ export default function App() {
                 Products
               </h6>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="#home" className="text-reset">
                   Home
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="#about" className="text-reset">
                   AboutUs
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="#cars" className="text-reset">
                   Cars
                 </a>
               </p>
               <p>
-                <NavLink className="text-black" to={"/Login"}>Login</NavLink>
+                <NavLink className="text-black" to={"/Login"}>
+                  Login
+                </NavLink>
               </p>
             </MDBCol>
 
@@ -81,7 +83,12 @@ export default function App() {
               </p>
             </MDBCol>
 
-            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4 text-black">
+            <MDBCol
+              md="4"
+              lg="3"
+              xl="3"
+              className="mx-auto mb-md-0 mb-4 text-black"
+            >
               <h6
                 className="text-uppercase fw-bold mb-4"
                 style={{ color: "red" }}
@@ -103,16 +110,12 @@ export default function App() {
                 <MDBIcon icon="print" className="me-3" /> + 212 6 23 45 67 88
               </p>
             </MDBCol>
+            <div className="text-center p-4">
+              © 2023 Copyright All Rights Reserved.
+            </div>
           </MDBRow>
         </MDBContainer>
       </section>
-
-      <div
-        className="text-center p-4"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-      >
-        © 2023 Copyright All Rights Reserved.
-      </div>
     </MDBFooter>
   );
 }

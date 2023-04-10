@@ -14,8 +14,9 @@ app.use(
   })
 );
 
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:true}))
 app.use(express.json());
+app.use(express.static('images'))
 app.use("/auth", authRouter);
 app.use("/car", carRouter);
 app.use(ErrorHandler);
