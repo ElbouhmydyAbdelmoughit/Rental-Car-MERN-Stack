@@ -3,7 +3,7 @@ import image from "../../assets/img/img-body.png";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [car, setCar] = useState([]);
@@ -14,6 +14,7 @@ const Hero = () => {
   };
 
   useEffect(() => {
+    let userToken = localStorage.getItem("token");
     getCars();
   }, []);
 
@@ -72,7 +73,7 @@ const Hero = () => {
               style={{ width: "18rem", height: "25rem" }}
               key={i}
             >
-              <div style={{height:"11rem"}}>
+              <div style={{ height: "11rem" }}>
                 <img
                   className="card-img-top w-100"
                   src={"http://localhost:2000/" + c.image}
@@ -84,7 +85,7 @@ const Hero = () => {
                 <span> {c.model} </span>
                 <p className="card-text">{c.description}</p>
                 <p className="card-text fw-bolder text-danger">{c.price} $</p>
-                <Link to={"/order"} className="btn btn-dark">
+                <Link to={"/command/" + c._id} className="btn btn-dark">
                   Rent Now
                 </Link>
               </div>

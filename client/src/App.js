@@ -16,6 +16,7 @@ import Client from "./pages/Client/Client";
 import Car from "./pages/Car/Car";
 import PrivateAdminRoute from "./components/PrivateAdminRoute/PrivateAdminRoute";
 import UpdateCar from "./pages/Car/UpdateCar";
+import Command from "./pages/Command/Command";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/command/:id" element={<Command />} />
         <Route element={<PrivateAdminRoute />}>
           <Route element={<Dashboard />}>
             <Route index path="/order" element={<Order />} />
