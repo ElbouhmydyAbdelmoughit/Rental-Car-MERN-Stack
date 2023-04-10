@@ -84,7 +84,7 @@ const Hero = () => {
                 <span> {c.model} </span>
                 <p className="card-text">{c.description}</p>
                 <p className="card-text fw-bolder text-danger">{c.price} $</p>
-                <Link to={"/order"} className="btn btn-dark">
+                <Link to={"/command"} className="btn btn-dark">
                   Rent Now
                 </Link>
               </div>
