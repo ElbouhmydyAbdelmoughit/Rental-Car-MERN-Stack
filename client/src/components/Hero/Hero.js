@@ -5,8 +5,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Hero = (props) => {
+const Hero = () => {
+  const [car, setCar] = useState([]);
+  const getCars = () => {
+    axios.get("http://localhost:2000/car").then((car) => {
+      setCar(car.data.Car);
+    });
+  };
+
+  useEffect(() => {
+    getCars();
+  }, []);
+
   return (
     <main id="home">
       <div className="container" id="home">
@@ -55,150 +70,37 @@ const Hero = (props) => {
         style={{ marginTop: 110, marginBottom: 110 }}
         id="cars"
       >
-        <Card sx={{ maxWidth: 345 }} className="mb-5">
-          <CardActionArea style={{ marginRight: 20 }}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={require("../../assets/img/about.png")}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 345 }} className="mb-5">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={require("../../assets/img/about.png")}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 345 }} className="mb-5">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={require("../../assets/img/about.png")}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 345 }} className="mb-5">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={require("../../assets/img/about.png")}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 345 }} className="mb-5">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={require("../../assets/img/about.png")}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
-        <Card sx={{ maxWidth: 345 }} className="mb-5">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={require("../../assets/img/about.png")}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-          </CardActions>
-        </Card>
+        <>
+          <div className="card" style={{ width: "18rem" }}>
+            <img className="card-img-top" src="..." alt="Card image cap" />
+            <div className="card-body">
+              <h5 className="card-title">Card title</h5>
+              <p className="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" className="btn btn-primary">
+                Go somewhere
+              </a>
+            </div>
+          </div>
+
+          {car.map((c) => {
+            <div className="card" style={{ width: "18rem" }}>
+              <img className="card-img-top" src="..." alt="Card image cap" />
+              <div className="card-body">
+                <h5 className="card-title"> {c.name} </h5>
+                <p className="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" className="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>;
+          })}
+        </>
       </div>
     </main>
   );
