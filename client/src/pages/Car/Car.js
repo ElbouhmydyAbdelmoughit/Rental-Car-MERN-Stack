@@ -41,6 +41,15 @@ const Car = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (addCar.name.trim() === "") {
+      toastGenerator("error", "Field Name is Required");
+    } else if (addCar.model.trim() === "") {
+      toastGenerator("error", "Field Model is Required");
+    } else if (addCar.price.trim() === "") {
+      toastGenerator("error", "Field Price is Required");
+    }
+
     const formData = new FormData();
     formData.append("name", addCar.name);
     formData.append("model", addCar.model);
@@ -51,12 +60,14 @@ const Car = () => {
       await axios
         .post("http://localhost:2000/car/add", formData)
         .then((data) => {
-          if(data){
-            toastGenerator("success", data);
+          if (data.data) {
+            toastGenerator("success", data.data);
+            setTimeout(() => {
+              navigate(0);
+            }, 1500);
           }
         });
     } catch (error) {
-      // toastGenerator("error",error.response.data.message);
       console.log(error.response.data.message);
     }
   };
