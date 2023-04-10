@@ -1,10 +1,5 @@
 import React from "react";
 import image from "../../assets/img/img-body.png";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -66,40 +61,35 @@ const Hero = () => {
         </div>
       </div>
       <div
-        className="container mx-auto d-flex justify-content-between align-content-between align-items-between flex-wrap"
+        className="container d-flex flex-wrap  justify-content-around   align-items-center"
         style={{ marginTop: 110, marginBottom: 110 }}
         id="cars"
       >
         <>
-          <div className="card" style={{ width: "18rem" }}>
-            <img className="card-img-top" src="..." alt="Card image cap" />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-
-          {car.map((c) => {
-            <div className="card" style={{ width: "18rem" }}>
-              <img className="card-img-top" src="..." alt="Card image cap" />
-              <div className="card-body">
-                <h5 className="card-title"> {c.name} </h5>
-                <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" className="btn btn-primary">
-                  Go somewhere
-                </a>
+          {car.map((c, i) => (
+            <div
+              className="card mt-5 mb-5"
+              style={{ width: "18rem", height: "25rem" }}
+              key={i}
+            >
+              <div style={{height:"11rem"}}>
+                <img
+                  className="card-img-top w-100"
+                  src={"http://localhost:2000/" + c.image}
+                  alt="Card image cap"
+                />
               </div>
-            </div>;
-          })}
+              <div className="card-body">
+                <h5 className="card-title fw-bold">{c.name}</h5>
+                <span> {c.model} </span>
+                <p className="card-text">{c.description}</p>
+                <p className="card-text fw-bolder text-danger">{c.price} $</p>
+                <Link to={"/order"} className="btn btn-dark">
+                  Rent Now
+                </Link>
+              </div>
+            </div>
+          ))}
         </>
       </div>
     </main>
