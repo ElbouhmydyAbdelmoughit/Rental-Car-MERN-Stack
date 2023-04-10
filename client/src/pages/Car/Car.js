@@ -2,7 +2,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import toastGenerator from "../../helpers/toastGenerator";
 import { ToastContainer } from "react-toastify";
 
@@ -72,6 +72,13 @@ const Car = () => {
     }
   };
 
+  function deleted(id) {
+    const result = window.confirm("Are you sure want to deleted this car");
+    if (result) {
+      axios.delete("http://localhost:2000/car/remove/" + id).then(() => {});
+    }
+  }
+
   return (
     <>
       <div className="mb-4">
@@ -104,8 +111,15 @@ const Car = () => {
               <td className="">{c.description}</td>
               <td className="">{c.image}</td>
               <td className="d-flex justify-content-between text-black">
-                <i className="bi bi-trash"></i>
-                <i className="bi bi-pen"></i>
+                <Link to={"/update/"+ c._id} className="text-black">
+                  <i className="bi bi-pen"></i>
+                </Link>
+                <button
+                  onClick={() => deleted(c._id)}
+                  className="border-0 bg-white"
+                >
+                  <i className="bi bi-trash"></i>
+                </button>
               </td>
             </tr>
           ))}

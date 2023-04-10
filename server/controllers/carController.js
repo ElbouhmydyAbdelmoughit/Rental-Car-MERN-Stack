@@ -76,7 +76,7 @@ const update = async (req, res, next) => {
           model: req.body.model,
           price: req.body.price,
           description: req.body.description,
-          image: req.body.image,
+          image: req.file.filename,
         }
       );
       if (!updateCar) throw new Error("This Car Not Update");
