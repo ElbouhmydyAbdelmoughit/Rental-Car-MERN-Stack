@@ -9,24 +9,10 @@ const {
   update,
 } = require("../controllers/carController");
 
-carRouter.post(
-  "/add",
-  upload.single("image"),
-  add
-);
+carRouter.post("/add", upload.single("image"), add);
 carRouter.get("/", getAll);
-carRouter.get("/:id", getOne);
+carRouter.get("/getOne/:id", getOne);
 carRouter.delete("/remove/:id", remove);
-carRouter.post(
-  "/update/:id",
-  [
-    check("name", "Please Enter Name").trim().notEmpty(),
-    check("model", "Please Enter Model").trim().notEmpty(),
-    check("price", "Please Enter Price").trim().notEmpty(),
-    check("description", "Please Enter Description").trim().notEmpty(),
-    check("image", "Please Add Image").trim().notEmpty(),
-  ],
-  update
-);
+carRouter.post("/update/:id", upload.single("image"), update);
 
 module.exports = carRouter;
