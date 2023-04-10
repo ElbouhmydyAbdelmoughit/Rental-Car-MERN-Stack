@@ -54,7 +54,10 @@ const UpdateCar = () => {
         .then((data) => {
           if (data.data.message) {
             toastGenerator("success", data.data.message);
-            navigate("/car");
+            setTimeout(() => {
+              navigate("/car");
+            }, 1500);
+
           }
         });
     } catch (error) {
