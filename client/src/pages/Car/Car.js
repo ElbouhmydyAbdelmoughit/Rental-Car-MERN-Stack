@@ -68,8 +68,7 @@ const Car = () => {
           }
         });
     } catch (error) {
-      toastGenerator("error", error.response.data.message);
-      console.log(error.response.data);
+      console.log(error.response.data.message);
     }
   };
 

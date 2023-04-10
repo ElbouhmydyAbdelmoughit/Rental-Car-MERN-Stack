@@ -5,8 +5,7 @@ const add = async (req, res, next) => {
   const errors = validationResult(req);
   try {
     if (errors.isEmpty()) {
-      const CarExist = await Car.findOne({ name: req.body.name });
-      console.log(req.body)
+      const CarExist = await Car.findOne({ model: req.body.model });
       if (!CarExist) {
         const car = await new Car({
           name: req.body.name,
