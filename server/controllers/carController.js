@@ -6,15 +6,14 @@ const add = async (req, res, next) => {
   try {
     if (errors.isEmpty()) {
       const CarExist = await Car.findOne({ name: req.body.name });
-
+      console.log(req.body)
       if (!CarExist) {
-       
         const car = await new Car({
           name: req.body.name,
           model: req.body.model,
           price: req.body.price,
           description: req.body.description,
-          image: req.body.image,
+          image: req.file.filename,
         });
         if (car) {
           await car.save();
@@ -24,6 +23,7 @@ const add = async (req, res, next) => {
         throw new Error("This Car Aleardy Exist");
       }
     } else {
+      console.log(errors.errors)
       throw new Error(errors.errors[0].msg);
     }
   } catch (error) {

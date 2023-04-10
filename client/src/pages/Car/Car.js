@@ -2,9 +2,12 @@ import axios from "axios";
 import Modal from "react-modal";
 import React from "react";
 import { useState, useEffect } from "react";
-import toastGenerator from "../../helpers/toastGenerator"
+import { useNavigate } from "react-router-dom";
+import toastGenerator from "../../helpers/toastGenerator";
+import { ToastContainer } from "react-toastify";
 
 const Car = () => {
+  const navigate = useNavigate();
   const [car, setCar] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [addCar, setAddCar] = useState({
@@ -38,18 +41,23 @@ const Car = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(addCar)
+    const formData = new FormData();
+    formData.append("name", addCar.name);
+    formData.append("model", addCar.model);
+    formData.append("price", addCar.price);
+    formData.append("description", addCar.description);
+    formData.append("image", addCar.image);
     try {
-      await axios.post("http://localhost:2000/car/add",addCar).then((data)=>{
-      if (data.data.msg) {
-        toastGenerator('success',data.data.msg)
-      }else{
-        toastGenerator('error',data.response.data.message)
-        console.log(data.response.data.message)
-      }
-    })
+      await axios
+        .post("http://localhost:2000/car/add", formData)
+        .then((data) => {
+          if(data){
+            toastGenerator("success", data);
+          }
+        });
     } catch (error) {
-      console.log(error)
+      // toastGenerator("error",error.response.data.message);
+      console.log(error.response.data.message);
     }
   };
 
@@ -107,13 +115,17 @@ const Car = () => {
           >
             <i className="bi bi-x text-black fs-1"></i>
           </button>
-          <div className="ms-5 me-5 d-flex flex-column justify-content-between align-items-center ">
+          <form
+            className="ms-5 me-5 d-flex flex-column justify-content-between align-items-center"
+            encType="multipart/form-data"
+          >
             <input
               type="text"
               name="name"
               placeholder="Name"
               className="mb-4"
               onChange={handleChange}
+              value={addCar.name}
             />
             <input
               type="text"
@@ -121,6 +133,7 @@ const Car = () => {
               placeholder="Model"
               className="mb-4"
               onChange={handleChange}
+              value={addCar.model}
             />
             <input
               type="number"
@@ -128,6 +141,7 @@ const Car = () => {
               placeholder="price"
               className="mb-4"
               onChange={handleChange}
+              value={addCar.price}
             />
             <input
               type="text"
@@ -135,6 +149,7 @@ const Car = () => {
               placeholder="description"
               className="mb-4"
               onChange={handleChange}
+              value={addCar.description}
             />
             <input
               type="file"
@@ -150,8 +165,9 @@ const Car = () => {
             >
               Add Car
             </button>
-          </div>
+          </form>
         </Modal>
+        <ToastContainer />
       </div>
     </>
   );
