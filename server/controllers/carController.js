@@ -16,6 +16,7 @@ const add = async (req, res, next) => {
           image: req.file.filename,
         });
         if (car) {
+          console.log()
           await car.save();
           res.send("Car Created Success");
         }
@@ -23,7 +24,6 @@ const add = async (req, res, next) => {
         throw new Error("This Car Aleardy Exist");
       }
     } else {
-      console.log(errors.errors)
       throw new Error(errors.errors[0].msg);
     }
   } catch (error) {
