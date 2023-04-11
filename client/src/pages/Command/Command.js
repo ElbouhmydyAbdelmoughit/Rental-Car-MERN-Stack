@@ -52,14 +52,12 @@ const Command = () => {
                   {car.model}
                 </h5>
                 <p className="card-text">{car.description}</p>
-                <p className="card-text">
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </p>
+                <p className="card-text text-white bg-danger ps-2 rounded text-center  w-25"> {car.price + "$"} </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-4 mx-auto mt-5">
+        <div className="col-4 mx-auto">
           <form className="mt-2">
             <div className="mb-3">
               <input
@@ -68,6 +66,15 @@ const Command = () => {
                 onChange={handleChnage}
                 placeholder="Full Name"
                 name="name"
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                onChange={handleChnage}
+                placeholder="Email"
+                name="email"
               />
             </div>
             <div className="mb-3">
