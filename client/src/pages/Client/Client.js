@@ -32,7 +32,15 @@ const Client = () => {
           <tr className="cell-1" key={i}>
             <td className="">{c.name}</td>
             <td className="">{c.email}</td>
-            <td className="">{c.role}</td>
+            <td
+              className={
+                c.role === "admin"
+                  ? "text-success"
+                  : "text-primary "
+               }
+            >
+              {c.role}
+            </td>
             <td className="d-flex justify-content-between text-black">
               <i className="bi bi-trash"></i>
               <i className="bi bi-pen"></i>

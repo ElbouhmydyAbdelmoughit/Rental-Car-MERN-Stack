@@ -98,6 +98,7 @@ const Car = () => {
             <th className="fw-bold">Model</th>
             <th className="fw-bold">Price</th>
             <th className="fw-bold">Description</th>
+            <th className="fw-bold text-wrap">Status</th>
             <th className="fw-bold text-wrap">Image</th>
             <th className="fw-bold">#</th>
           </tr>
@@ -109,9 +110,16 @@ const Car = () => {
               <td className="">{c.model}</td>
               <td className="">{c.price}</td>
               <td className="">{c.description}</td>
+              <td
+                className={
+                  c.status !== "available" ? "text-danger" : "text-success"
+                }
+              >
+                {c.status}
+              </td>
               <td className="">{c.image}</td>
               <td className="d-flex justify-content-between text-black">
-                <Link to={"/update/"+ c._id} className="text-black">
+                <Link to={"/update/" + c._id} className="text-black">
                   <i className="bi bi-pen"></i>
                 </Link>
                 <button
