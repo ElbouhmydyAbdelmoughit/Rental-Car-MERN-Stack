@@ -11,7 +11,7 @@ const Command = () => {
   const access = localStorage.getItem("token");
   const navigate = useNavigate();
   const stripe = useStripe();
-  const elements = useElements();
+  const element = useElements();
 
   const [car, setCar] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -44,7 +44,31 @@ const Command = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
-    console.log(credentials);
+    const cardElement = element.getElement("card");
+    const { name, email, phone, address } = credentials;
+    const billingInfo = {
+      name,
+      phone,
+      email,
+      address: {
+        line1: address,
+      },
+    };
+
+    try {
+      const paymentIntent = await axios.post(
+        "http://localhost:2000/command/payment",
+        { amount: car.price * 100 }
+      );
+
+      const paymentMethodObj = await stripe.createPaymentMethod({
+        type: "card",
+        card: cardElement,
+        billing_details: billingInfo,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
