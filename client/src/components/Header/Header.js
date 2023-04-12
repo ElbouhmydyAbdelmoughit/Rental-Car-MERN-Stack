@@ -2,12 +2,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import Authorisation from "../Authorisation/Authorisation";
-import { useEffect } from "react";
 
 function Header() {
   const navigate = useNavigate();
   const access = localStorage.getItem("token");
+  console.log(access)
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/login");
