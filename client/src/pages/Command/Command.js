@@ -52,7 +52,10 @@ const Command = () => {
                   {car.model}
                 </h5>
                 <p className="card-text">{car.description}</p>
-                <p className="card-text text-white bg-danger ps-2 rounded text-center  w-25"> {car.price + "$"} </p>
+                <p className="card-text text-white bg-danger ps-2 rounded text-center  w-25">
+                  {" "}
+                  {car.price + "$"}{" "}
+                </p>
               </div>
             </div>
           </div>
