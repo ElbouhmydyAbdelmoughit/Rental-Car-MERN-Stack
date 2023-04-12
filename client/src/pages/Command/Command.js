@@ -4,12 +4,27 @@ import Footer from "../../components/Footer/Footer";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 const Command = () => {
-  const [car, setCar] = useState([]);
-  const navigate = useNavigate();
   const { id } = useParams();
   const access = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [car, setCar] = useState([]);
+  const [credentials, setCredentials] = useState({
+    name: "",
+    name: "",
+    name: "",
+    name: "",
+  });
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
   useEffect(() => {
     if (!access) {
       navigate("/login");
@@ -25,9 +40,10 @@ const Command = () => {
     });
   };
 
-  const handleChnage = () => {};
-
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(credentials)
+  };
 
   return (
     <>
@@ -53,8 +69,7 @@ const Command = () => {
                 </h5>
                 <p className="card-text">{car.description}</p>
                 <p className="card-text text-white bg-danger ps-2 rounded text-center  w-25">
-                  {" "}
-                  {car.price + "$"}{" "}
+                  {car.price + "$"}
                 </p>
               </div>
             </div>
@@ -66,7 +81,7 @@ const Command = () => {
               <input
                 type="text"
                 className="form-control"
-                onChange={handleChnage}
+                onChange={handleChange}
                 placeholder="Full Name"
                 name="name"
               />
@@ -75,7 +90,7 @@ const Command = () => {
               <input
                 type="text"
                 className="form-control"
-                onChange={handleChnage}
+                onChange={handleChange}
                 placeholder="Email"
                 name="email"
               />
@@ -86,27 +101,29 @@ const Command = () => {
                 name="phone"
                 className="form-control"
                 placeholder="Phone"
-                onChange={handleChnage}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3">
               <input
                 type="text"
                 className="form-control"
-                onChange={handleChnage}
-                placeholder="CIN"
-                name="cin"
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                onChange={handleChnage}
+                onChange={handleChange}
                 placeholder="Address"
                 name="address"
               />
             </div>
+            <CardElement
+              options={{
+                hidePostalCode: true,
+                style: {
+                  base: { fontSize: "16px" },
+                  invalid: {
+                    color: "red",
+                  },
+                },
+              }}
+            />
             <div className="mt-2">
               <button
                 type="button"
