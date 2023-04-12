@@ -14,16 +14,13 @@ const Command = () => {
   const elements = useElements();
 
   const [car, setCar] = useState([]);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [credentials, setCredentials] = useState({
     name: "",
     name: "",
     name: "",
     name: "",
   });
-
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
 
   useEffect(() => {
     if (!access) {
@@ -40,9 +37,14 @@ const Command = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(credentials)
+    setIsProcessing(true);
+    console.log(credentials);
   };
 
   return (
@@ -126,6 +128,7 @@ const Command = () => {
             />
             <div className="mt-2">
               <button
+                disabled={isProcessing}
                 type="button"
                 className="btn btn-dark me-2"
                 onClick={handleSubmit}
