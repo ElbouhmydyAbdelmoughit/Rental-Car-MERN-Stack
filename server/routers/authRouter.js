@@ -1,6 +1,6 @@
-const authRouter = require("express").Router();
-const { Login, Register, getAll } = require("../controllers/authController");
 const { check } = require("express-validator");
+const authRouter = require("express").Router();
+const { Login, Register, getAll, remove } = require("../controllers/authController");
 
 authRouter.get("/getAll", getAll);
 authRouter.post(
@@ -23,5 +23,7 @@ authRouter.post(
   ],
   Register
 );
+
+authRouter.delete('/delete/:id',remove)
 
 module.exports = authRouter;
