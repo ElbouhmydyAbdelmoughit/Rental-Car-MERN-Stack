@@ -11,9 +11,9 @@
 // });
 // test("Register", async () => {
 //   const res = await request(app).post("/auth/register").send({
-//     name: "root2",
-//     email: "root2@gmail.com",
-//     password:"root2"
+//     name: "client",
+//     email: "client@gmail.com",
+//     password:"client"
 //   });
 //   expect(res.text).toBe("User Created Success");
 // });
@@ -21,6 +21,13 @@
 //   const res = await request(app).get("/auth/getAll");
 //   expect(res.body.success).toBe(true);
 // });
+
+// test("Remove Client", async () => {
+  //   const res = await request(app).delete(
+  //     "/auth/delete/6433d6e10130ab195b6e768c"
+  //   );
+  //   expect(res.body.message).toBe("Car Deleted Success");
+  // });
 // });
 
 // describe("Testing For EndPoint Car", () => {

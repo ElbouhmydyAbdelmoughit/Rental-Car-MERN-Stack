@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Client = () => {
+
+  const navigate = useNavigate()
   const [client, setClient] = useState([]);
   useEffect(() => {
     getAllUsers();
-  }, []);
+  }, [client]);
 
   const getAllUsers = async () => {
     try {
@@ -20,7 +23,9 @@ const Client = () => {
   function deleted(id) {
     const result = window.confirm("Are you sure want to deleted this client");
     if (result) {
-      axios.delete("http://localhost:2000/auth/delete/" + id).then(() => {});
+      axios.delete("http://localhost:2000/auth/delete/" + id).then(() => {
+        navigate(0)
+      });
     }
   }
 

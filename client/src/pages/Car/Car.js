@@ -75,7 +75,9 @@ const Car = () => {
   function deleted(id) {
     const result = window.confirm("Are you sure want to deleted this car");
     if (result) {
-      axios.delete("http://localhost:2000/car/remove/" + id).then(() => {});
+      axios.delete("http://localhost:2000/car/remove/" + id).then(() => {
+        navigate(0)
+      });
     }
   }
 
