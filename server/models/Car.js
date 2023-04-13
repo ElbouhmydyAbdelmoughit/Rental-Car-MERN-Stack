@@ -18,7 +18,7 @@ const carSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    default: "availbale",
+    default: "available",
   },
 });
 
