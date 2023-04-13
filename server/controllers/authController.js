@@ -82,4 +82,18 @@ const getAll = async (req, res, next) => {
   }
 };
 
-module.exports = { Login, Register, getAll };
+
+const remove = async (req, res, next) =>{
+  const id = req.params.id;
+  try {
+    const UserExist = await User.findByIdAndRemove({ _id: id });
+    if (!UserExist) throw new Error("This User not Found");
+    if (UserExist) {
+      res.json({ message: "User Deleted Success" });
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { Login, Register, getAll, remove };
