@@ -17,27 +17,33 @@ import Car from "./pages/Car/Car";
 import PrivateAdminRoute from "./components/PrivateAdminRoute/PrivateAdminRoute";
 import UpdateCar from "./pages/Car/UpdateCar";
 import Command from "./pages/Command/Command";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLIC_KEY);
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<ERROR404 />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/command/:id" element={<Command />} />
-        <Route element={<PrivateAdminRoute />}>
-          <Route element={<Dashboard />}>
-            <Route index path="/order" element={<Order />} />
-            <Route path="/client" element={<Client />} />
-            <Route path="/car" element={<Car />} />
-            <Route path="/update/:id" element={<UpdateCar />} />
+    <Elements stripe={stripePromise}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<ERROR404 />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/command/:id" element={<Command />} />
+          <Route element={<PrivateAdminRoute />}>
+            <Route element={<Dashboard />}>
+              <Route index path="/order" element={<Order />} />
+              <Route path="/client" element={<Client />} />
+              <Route path="/car" element={<Car />} />
+              <Route path="/update/:id" element={<UpdateCar />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-      <Routes></Routes>
-    </BrowserRouter>
+        </Routes>
+        <Routes></Routes>
+      </BrowserRouter>
+    </Elements>
   );
 };
 

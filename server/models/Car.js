@@ -16,6 +16,10 @@ const carSchema = mongoose.Schema({
   image: {
     type: String,
   },
+  status: {
+    type: String,
+    default: "available",
+  },
 });
 
 module.exports = mongoose.model("Car", carSchema);

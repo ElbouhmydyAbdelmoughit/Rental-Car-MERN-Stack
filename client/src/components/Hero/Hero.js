@@ -84,7 +84,10 @@ const Hero = () => {
                 <h5 className="card-title fw-bold">{c.name}</h5>
                 <span> {c.model} </span>
                 <p className="card-text">{c.description}</p>
-                <p className="card-text fw-bolder text-danger">{c.price} $</p>
+                <div className=" d-flex justify-content-between">
+                  <p className="card-text fw-bolder text-danger">{c.price} $</p>
+                  <p className={c.status === "available" ? "text-white bg-success rounded-9 ps-2 pe-2 " :"text-white bg-danger rounded-9 ps-2 pe-2 "}>{c.status} $</p>
+                </div>
                 <Link to={"/command/" + c._id} className="btn btn-dark">
                   Rent Now
                 </Link>
