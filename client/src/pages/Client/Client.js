@@ -17,6 +17,13 @@ const Client = () => {
     }
   };
 
+  function deleted(id) {
+    const result = window.confirm("Are you sure want to deleted this client");
+    if (result) {
+      axios.delete("http://localhost:2000/auth/delete/" + id).then(() => {});
+    }
+  }
+
   return (
     <table className="table" style={{ minWidth: "800px" }}>
       <thead className="bg-black text-white">
@@ -33,17 +40,17 @@ const Client = () => {
             <td className="">{c.name}</td>
             <td className="">{c.email}</td>
             <td
-              className={
-                c.role === "admin"
-                  ? "text-success"
-                  : "text-primary "
-               }
+              className={c.role === "admin" ? "text-success" : "text-primary "}
             >
               {c.role}
             </td>
             <td className="d-flex justify-content-between text-black">
-              <i className="bi bi-trash"></i>
-              <i className="bi bi-pen"></i>
+              <button
+                onClick={() => deleted(c._id)}
+                className="border-0 bg-white"
+              >
+                <i className="bi bi-trash"></i>
+              </button>
             </td>
           </tr>
         ))}
