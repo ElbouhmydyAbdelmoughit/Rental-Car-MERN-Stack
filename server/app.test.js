@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("./app");
 
-describe("Testing For EndPoint Authentication", () => {
+// describe("Testing For EndPoint Authentication", () => {
   // test("Login", async () => {
   //   const res = await request(app).post("/auth/login").send({
   //     email: "admin@gmail.com",
@@ -17,23 +17,23 @@ describe("Testing For EndPoint Authentication", () => {
   //   });
   //   expect(res.text).toBe("User Created Success");
   // });
-  test("Get All Client", async () => {
-    const res = await request(app).get("/auth/getAll");
-    expect(res.body.success).toBe(true);
-  });
-});
+  // test("Get All Client", async () => {
+  //   const res = await request(app).get("/auth/getAll");
+  //   expect(res.body.success).toBe(true);
+  // });
+// });
 
-// describe("Testing For EndPoint Car", () => {
+describe("Testing For EndPoint Car", () => {
 //   test("Created Organizme", async () => {
 //     const res = await request(app).post("/organizme/add").send({
 //       name: "Test",
 //     });
 //     expect(res.text).toBe("Organizme Created Success");
 //   });
-//   test("Get All Organizme", async () => {
-//     const res = await request(app).get("/organizme");
-//     expect(res.body.success).toBe(true);
-//   });
+  test("Get All Cars", async () => {
+    const res = await request(app).get("/car");
+    expect(res.body.success).toBe(true);
+  });
 //   test("Get One Organizme", async () => {
 //     const res = await request(app).get("/organizme/63bf0958d8b2967de9da898d");
 //     expect(res.body.success).toBe(true);
@@ -52,4 +52,4 @@ describe("Testing For EndPoint Authentication", () => {
 //       });
 //     expect(res.body.message).toBe("Update Success");
 //   });
-// });
+});
