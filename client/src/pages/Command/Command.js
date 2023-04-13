@@ -11,16 +11,19 @@ const Command = () => {
   const access = localStorage.getItem("token");
   const navigate = useNavigate();
   const stripe = useStripe();
-  const element = useElements();
+  const elements = useElements();
 
   const [car, setCar] = useState([]);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [credentials, setCredentials] = useState({
     name: "",
     name: "",
     name: "",
     name: "",
   });
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     if (!access) {
@@ -37,39 +40,8 @@ const Command = () => {
     });
   };
 
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsProcessing(true);
-    const cardElement = element.getElement("card");
-    const { name, email, phone, address } = credentials;
-    const billingInfo = {
-      name,
-      phone,
-      email,
-      address: {
-        line1: address,
-      },
-    };
-
-    try {
-      const paymentIntent = await axios.post(
-        "http://localhost:2000/command/payment",
-        { amount: car.price * 100 }
-      );
-
-      const paymentMethodObj = await stripe.createPaymentMethod({
-        type: "card",
-        card: cardElement,
-        billing_details: billingInfo,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const handleSubmit = () => {};
 
   return (
     <>
@@ -152,7 +124,6 @@ const Command = () => {
             />
             <div className="mt-2">
               <button
-                disabled={isProcessing}
                 type="button"
                 className="btn btn-dark me-2"
                 onClick={handleSubmit}
